@@ -1,29 +1,23 @@
 describe("About Functions (about_functions.js)", function() {
-
   it("should declare functions", function() {
-
     function add(a, b) {
       return a + b;
     }
-
-    expect(add(1, 2)).toBe(FILL_ME_IN);
+    expect(3).toBe(add(1, 2));
   });
 
   it("should know internal variables override outer variables", function () {
     let message = "Outer";
-
     function getMessage() {
       return message;
     }
-
     function overrideMessage() {
       let message = "Inner";
       return message;
     }
-
-    expect(getMessage()).toBe(FILL_ME_IN);
-    expect(overrideMessage()).toBe(FILL_ME_IN);
-    expect(message).toBe(FILL_ME_IN);
+    expect("Outer").toBe(getMessage());
+    expect("Inner").toBe(overrideMessage());
+    expect("Outer").toBe(message);
   });
 
   it("should have lexical scoping", function () {
@@ -35,37 +29,31 @@ describe("About Functions (about_functions.js)", function() {
       }
       return childfunction();
     }
-    expect(parentfunction()).toBe(FILL_ME_IN);
+    expect("local").toBe(parentfunction());
   });
 
   it("should use lexical scoping to synthesise functions", function () {
-
     function makeMysteryFunction(makerValue){
       let newFunction = function doMysteriousThing(param){
         return makerValue + param;
       };
       return newFunction;
     }
-
     let mysteryFunction3 = makeMysteryFunction(3);
     let mysteryFunction5 = makeMysteryFunction(5);
-
-    expect(mysteryFunction3(10) + mysteryFunction5(5)).toBe(FILL_ME_IN);
+    expect(23).toBe(mysteryFunction3(10) + mysteryFunction5(5));
   });
 
   it("should allow extra function arguments", function () {
-
     function returnFirstArg(firstArg) {
       return firstArg;
     }
-
-    expect(returnFirstArg("first", "second", "third")).toBe(FILL_ME_IN);
+    expect("first").toBe(returnFirstArg("first", "second", "third"));
 
     function returnSecondArg(firstArg, secondArg) {
       return secondArg;
     }
-
-    expect(returnSecondArg("only give first arg")).toBe(FILL_ME_IN);
+    expect(undefined).toBe(returnSecondArg("only give first arg"));
 
     function returnAllArgs() {
       let argsArray = [];
@@ -74,25 +62,19 @@ describe("About Functions (about_functions.js)", function() {
       }
       return argsArray.join(",");
     }
-
-    expect(returnAllArgs("first", "second", "third")).toBe("first,second,third");
+    expect("first,second,third").toBe(returnAllArgs("first", "second", "third"));
   });
 
   it("should pass functions as values", function () {
-
     let appendRules = function (name) {
       return name + " rules!";
     };
-
     let appendDoubleRules = function (name) {
       return name + " totally rules!";
     };
-
     let praiseSinger = { givePraise: appendRules };
-    expect(praiseSinger.givePraise("John")).toBe(FILL_ME_IN);
-
+    expect("John rules!").toBe(praiseSinger.givePraise("John"));
     praiseSinger.givePraise = appendDoubleRules;
-    expect(praiseSinger.givePraise("Mary")).toBe(FILL_ME_IN);
-
+    expect("Mary totally rules!").toBe(praiseSinger.givePraise("Mary"));
   });
 });

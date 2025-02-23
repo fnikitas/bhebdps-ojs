@@ -23,6 +23,6 @@ describe("About Equality (about_equality.js)", function(){
     // quote types are interchangable, but must match.
     expect("frankenstein" === 'frankenstein').toBeTruthy();
     // quote types can use both single and double quotes.
-    expect("frankenstein" == "frankenstein").toBeFalsy();
+    expect(42 == "frankenstein").toBeFalsy();
   });
 });

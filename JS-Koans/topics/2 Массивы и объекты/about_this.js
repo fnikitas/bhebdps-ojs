@@ -3,11 +3,9 @@ describe("About this (about_this.js)", function() {
     let person = {
       name: 'bob',
       intro: function () {
-        return "Hello, my name is " + this.FILL_ME_IN;
+        return "Hello, my name is " + this.name;
       }
-    }
-
-    // If an object has a method can you access properties inside it?
+    };
     expect(person.intro()).toBe("Hello, my name is bob");
   });
 
@@ -17,15 +15,9 @@ describe("About this (about_this.js)", function() {
       intro: function () {
         return "Hello, my name is " + this.globalName;
       }
-    }
-
+    };
     let alias = person.intro;
-
-    // if the function is not called as an object property 'this' is the global context 
-    // (window in a browser). This is an example. Please do not do this in practise.
-    window.FILL_ME_IN = 'Peter';
-
-    // What does 'this' refer to when it is not part of an object?
+    window.globalName = 'Peter';
     expect(alias()).toBe("Hello, my name is Peter");
   });
 
@@ -35,13 +27,8 @@ describe("About this (about_this.js)", function() {
       intro: function () {
         return "Hello, my name is " + this.name;
       }
-    }
-
-    // calling a function with 'call' lets us assign 'this' explicitly
-    let message = person.intro.call({FILL_ME_IN: "Frank"});
-
-    // What does 'this' refer to when you use the 'call()' method?
+    };
+    let message = person.intro.call({ name: "Frank" });
     expect(message).toBe("Hello, my name is Frank");
   });
 });
-

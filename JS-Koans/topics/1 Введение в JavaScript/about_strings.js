@@ -11,7 +11,7 @@ describe("About Strings (about_strings.js)", function() {
     let fruit = "apple";
     let dish = "pie";
     // are the two strings equal?
-    expect("applw pie").toBe(fruit + " " + dish);
+    expect("apple pie").toBe(fruit + " " + dish);
   });
 
   it("character Type", function() {
